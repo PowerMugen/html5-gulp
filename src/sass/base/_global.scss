@@ -1,0 +1,366 @@
+/* page wrapper
+================ */
+.wrapper {
+    max-width: $page;
+    @include centered-auto;
+  }
+  
+  /* Balises
+  =====================*/
+  html {min-height:100%; line-height:1.333; font-size: 62.5%;}
+  body {
+    @include font-size-root($fontsize);
+  }
+  
+  /* Styler les éléments généraux */
+  img {max-width:100%; height:auto;}
+  a[href^="tel"] {color:inherit;}
+  label {cursor: pointer;}
+  
+  /* Buttons
+  =====================*/
+  [class*="-btn"],
+  [class*="btn-"] {display:inline-block; vertical-align: middle; margin:0; border:none; font-size:15px; line-height:normal; text-align: center; cursor:pointer; -webkit-appearance: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  /*=====================================*/
+  
+  /* Icons
+  ================ */
+  [class^="ico-"]{
+    font-size:0;
+    display: inline-block;
+    position: relative;
+    &::before{ 
+  
+      @include font-size-root($fontsize);
+    }
+  }
+  .ico-txt {text-indent: -9999em; text-align:left; overflow: hidden;}
+  
+  /*=====================================*/
+  
+  /* Grid
+  ================ */
+  /**
+   * Fluid Grid system, with percent %
+   * Parent `grids` only contain `grid-*` as child
+   * Unit "grid" must begin with class `grid-*`
+   * Example :
+   * OK
+   <div class="grids">
+    <div class="grid-1-2"></div>
+   </div>
+   **********
+   * Not OK
+   <div class="grids">
+    <h2>Titre</h2>
+    <div class="grid-1-2"></div>
+   </div>
+   **********
+   * Not OK
+   <div class="grids">
+    <div class="box-border grid-1-2"></div>
+   </div>
+   * Keep structure with indent `.grids>.grid-*`
+   <div class="grids">
+    <div class="grid-1-2">
+      <div class="grids">
+        <div class="grid-1-3"></div>
+        <div class="grid-1-3"></div>
+        <div class="grid-1-3"></div>
+      </div>
+    </div>
+    <div class="grid-1-2"></div>
+   </div>
+   */
+  .grids {margin-left:-$gridmargin; letter-spacing:-0.31em;
+    font-size:0;
+    /* Corriger le problème avec les polices non web-safe */
+    font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;}
+  .opera:-o-prefocus, .grids {word-spacing: -0.43em; /* Fix for Opera */}
+    /* La classe doit absolument commencer par .grid- */
+    [class^="grid-"] {
+      padding-left:$gridmargin; 
+      width:100%; 
+      display: inline-block; 
+      vertical-align: top; 
+      word-spacing:normal; 
+      letter-spacing:normal;
+      @include font-size-root($fontsize);
+    }
+  
+  /* Grille sans marge */
+  /* .grids */.grids-flush {margin-left:0;}
+    .grids-flush > [class^="grid-"] {padding-left:0;}
+  
+  
+  /* Grille marges /2 */
+  /* .grids */.grids-small {margin-left:-($gridmargin/2);}
+    .grids-small > [class^="grid-"] {padding-left:$gridmargin/2;}
+  
+  /* Grille marges x1.5 */
+  /* .grids */.grids-inter {margin-left:-($gridmargin*1.5);}
+    .grids-inter > [class^="grid-"] {padding-left:$gridmargin*1.5;}
+  
+  /* Grille marges x2 */
+  /* .grids */.grids-large {margin-left:-($gridmargin*2);}
+    .grids-large > [class^="grid-"] {padding-left:$gridmargin*2;}
+  
+  /* Grille marges x3 */
+  /* .grids */.grids-larger {margin-left:-($gridmargin*3);}
+  .grids-larger > [class^="grid-"] {padding-left:$gridmargin*3;}
+  
+  
+  /* Grille alignée au milieu */
+  /* .grids */.grids-middle > [class^="grid-"] {vertical-align: middle;}
+  
+  /* Grille alignée en bas */
+  /* .grids */.grids-bottom > [class^="grid-"] {vertical-align: bottom;}
+  
+  /**
+   * Largeurs des grilles
+   Utiliser le mixin pour ajouter les grilles selon la maquette
+   ex en dessous pour la grille 4 et 12 colonnes
+   */
+  
+  .grids{
+    @include creategrid(4, $name : grid);
+    @include creategrid(12, $name : grid);
+  }
+  
+  /* Moitiés */
+  .grid-half {width:50%;}
+  
+  /* Auto */
+  .grid-auto {
+    width:auto;
+  }
+  
+  /* 100% */
+  .grid-full {
+    width:100%;
+  }
+  
+  
+  /*=====================================*/
+  
+  /* Media object
+  ================== */
+  /**
+   * Permet d'afficher du contenu à côté d'une image ou d'un élément
+  <div class="media">
+      <div class="media-item"></div>
+      <div class="media-body"></div>
+  </div>
+   * ou
+   <div class="media">
+       <div class="media-item-rev"></div>
+       <div class="media-body"></div>
+   </div>
+   */
+  .media:after {content:""; display:table; clear:both;}
+    .media-body {overflow:hidden;}
+    .media-item {float:left; margin-right:$gridmargin;}
+    /* Image à droite */
+    .media-item-rev {float:right; margin-left:$gridmargin;}
+  
+    /* Pas d'espace entre l'image et le contenu */
+    .media-flush > .media-item,
+    .media-flush > .media-item-rev {margin-left:0; margin-right:0;}
+  
+    /* Espace divisé par 2 */
+    .media-small > .media-item {margin-right:$gridmargin/2;}
+    .media-small > .media-item-rev {margin-left:$gridmargin/2;}
+    
+    /* Espace multiplié par 1.5 */
+    .media-inter > .media-item {margin-right:$gridmargin*1.5;}
+    .media-inter > .media-item-rev {margin-left:$gridmargin*1.5;}
+  
+    /* Espace multiplié par 2 */
+    .media-large > .media-item {margin-right:$gridmargin*2;}
+    .media-large > .media-item-rev {margin-left:$gridmargin*2;}
+  
+    /* Espace multiplié par 3.5 */
+    .media-larger > .media-item {margin-right:$gridmargin*3.5;}
+    .media-larger > .media-item-rev {margin-left:$gridmargin*3.5;}
+  
+  
+  /*=====================================*/
+  
+  /* Alignement vertical
+  ========================= */
+  /**
+   * Permet d'aligner verticalement un contenu lorsque ses dimensions ainsi que celles de son parent sont inconnues
+  <div class="v-align-wrap">
+      <div class="v-align"></div>
+  </div>
+   */
+  .v-align-wrap {letter-spacing: -0.31em;
+    /* Corriger le problème avec les polices non web-safe */
+    font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;}
+  .opera:-o-prefocus, .v-align-wrap {word-spacing: -0.43em; /* Fix for Opera */}
+  .v-align-wrap::before {content: ""; display: inline-block; height: 100%; vertical-align: middle;}
+    .v-align {display: inline-block; vertical-align: middle; letter-spacing: normal; word-spacing:normal;max-width:99.9%}
+  
+  
+  /* Navigation
+  =====================*/
+  .nav > li,
+    .nav > li > a,
+  .list-inline > li,
+    .list-inline > li > a {display:inline-block;}
+  
+  /* Navigation verticale */
+  .nav-vertical > li,
+  .children > li {display:list-item;}
+  
+  /* Trigger sous-menu */
+  .has-children {position:relative;}
+    /* Sous-menu */
+    .nav-children .children {position:absolute; top:100%; left:-99999em;}
+      .nav-children .children > li {min-width:200px; float:left;}
+        .nav-children .children > li > a {display:block;}
+  
+  /* Apparition sous-menu */
+  .nav-children .has-children:hover > .children {left:0;}
+  /* Second niveau */
+  .nav-children .children .has-children:hover > .children {top:0; left:100%;}
+  
+  /*=====================================*/
+  
+  /* Formulaires (form)
+  ==============================*/
+  form {
+    /**
+     * Specific style for select 
+     * Customise `select` without JS
+    <span class="dropdown">
+      <select></select>
+    </span> 
+     */
+    .dropdown{
+      position:relative; display:inline-block; overflow:hidden; border:1px solid; background:#FFF; vertical-align: middle;
+      &:after{
+        content:""; position:absolute; top:50%; right:8px; margin-top:-3px;  width: 0; height: 0; border:0 solid transparent; border-width:6px 5px 0 5px; border-top-color:#000; z-index: 1; pointer-events:none;
+      }
+      select{
+        border:none; padding-right:12px; width:110%; max-width:110%; min-width:190px; height:28px; background:none;  appearance: none; -webkit-appearance: none;
+        &::-ms-expand {display:none;}
+        &:focus {outline:none; box-shadow:inset 0 0 1px 1px rgba(0,127,162, .30);}
+      }
+    }
+  
+  
+    /**
+     * input Radio et Checkbox 
+    <label class="option-label option--checkbox">
+      <input type="checkbox">
+      Label
+      <i class="option-input"></i>
+    </label>
+    <label class="option-label option--radio">
+      <input type="radio">
+      Label
+      <i class="option-input"></i>
+    </label>
+     */
+    & .option-label {
+      position: relative;
+      display: inline-block;
+      padding-left:0;
+      padding-bottom:0;
+      @include font-size-root(14);
+      width:13px;
+      height:13px;
+      vertical-align: middle;
+    }
+    .option-label [type="checkbox"], .option-label [type="radio"] {
+      position:relative;
+      opacity:0;
+      width:inherit;
+      height:inherit;
+      z-index:1;
+    }
+    .option-input {
+      position: absolute;
+      display: block; border:1px solid #b4b3b7;
+      width:inherit;
+      height:inherit;
+      background:#FFF;
+      text-align: center;
+      top:0;
+      left:0;
+      z-index:0;
+    }
+    /* Survol */
+    .option-label:hover .option-input,
+    .option-label:focus .option-input {
+      border-color:#818084;
+    }
+  
+    /* Checkbox */
+    .option--checkbox .option-input {
+      font-size: 60%; -webkit-border-radius:10%; border-radius:10%;
+    }
+    .option--checkbox .option-input::before {
+      content: ""; display:block;
+      position:absolute;
+      top:0;
+      left:0;
+      height:inherit;
+      width:inherit;
+      z-index:0;
+    }
+    .option--checkbox input:checked ~ .option-input::before {
+      background-size:12px 12px;
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPjxnIGlkPSJpY29tb29uLWlnbm9yZSI+PGxpbmUgc3Ryb2tlLXdpZHRoPSIxIiB4MT0iIiB5MT0iIiB4Mj0iIiB5Mj0iIiBzdHJva2U9IiM0NDlGREIiIG9wYWNpdHk9IiI+PC9saW5lPjwvZz48cGF0aCBkPSJNMTMuMjcyIDI3LjJjLTAuNjk2IDAtMS4zNTUtMC4zMjUtMS43NzgtMC44ODVsLTUuNzE4LTcuNTQ5Yy0wLjc0NC0wLjk4Mi0wLjU1LTIuMzgxIDAuNDMyLTMuMTI1IDAuOTg0LTAuNzQ2IDIuMzgxLTAuNTUgMy4xMjUgMC40MzJsMy43NjIgNC45NjYgOS40NTktMTUuMTg2YzAuNjUxLTEuMDQ1IDIuMDI3LTEuMzY1IDMuMDc0LTAuNzE0IDEuMDQ1IDAuNjUgMS4zNjUgMi4wMjcgMC43MTIgMy4wNzJsLTExLjE3MyAxNy45MzZjLTAuMzg5IDAuNjI2LTEuMDU5IDEuMDE4LTEuNzk0IDEuMDUwLTAuMDM0IDAuMDAyLTAuMDY3IDAuMDAyLTAuMTAxIDAuMDAyeiIgZmlsbD0iIzIxMjEyMSI+PC9wYXRoPjwvc3ZnPg==);
+    }
+  
+    /* Radio */
+    .option--radio .option-input {
+      -webkit-border-radius: 50%; border-radius: 50%;}
+    .option--radio .option-input::before {
+      content: ""; position:absolute;
+      top:0; bottom:0; left:0; right:0; margin:2px;
+      -webkit-border-radius: 50%; border-radius: 50%;
+    }
+    .option--radio input:checked ~ .option-input::before {
+      background:#2f2f2f;
+    }
+  }
+  
+  /* Formulaire en ligne (+.layout-form-inline) */
+  .layout-form-inline p {clear:both;}
+  .layout-form-inline label {display:inline; padding-right:10px;}
+  .layout-form-inline .copy {width:auto; padding:0;}
+  .layout-form-inline .copy, .layout-form-inline .ui-state-error {margin-left:160px;}
+  .layout-form-inline .error {display:block;}
+  
+  
+  /*=====================================*/
+  
+  /* helper Classes
+  ==============================*/
+  .center {text-align:center;}
+  .left {text-align: left;}
+  .right {text-align:right;}
+  .flleft {float:left;}
+  .flright {float:right;}
+  .for-print, .no-display {display:none;}
+  .hidden {position:fixed; top:-9999em; left:-9999em; overflow: hidden;}
+  
+  br.clear {clear:both; line-height:1px; height:0; font-size:1px;}
+  .cf{
+    @include cf;
+  }
+  
+  
+  .flex {
+    display: flex;
+  }
+  
+  

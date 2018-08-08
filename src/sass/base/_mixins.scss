@@ -1,0 +1,277 @@
+@charset "UTF-8";
+// Mixins for sass project
+@mixin create-hexa($size, $background) {
+  height: $size;
+  width: $size*0.58;
+  background-color: $background;
+  position: relative;
+  margin: 0 $size*0.29;
+  display: inline-block;
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    height: $size;
+    width: $size*0.58;
+    position: absolute;
+    background-color: inherit;
+    transform-origin: 50% 50%;
+  }
+  &:before {
+    transform: rotate(60deg);
+  }
+  &:after {
+    transform: rotate(-60deg);
+  }
+  .hexalign {
+    position: absolute;
+    top: 0;
+    left: -$size*0.30;
+    right: -$size*0.30;
+    bottom: 0;
+    height: 100%;
+    z-index: 1;
+    text-align: center;
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+    &>div {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: $size*1.15;
+    }
+  }
+}
+
+/*
+center block
+*/
+
+@mixin centered-auto {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+/* font-size */
+
+@mixin font-size-root($size: 14) {
+  font-size: $size+px;
+  font-size: ($size/10)+rem;
+}
+
+/*
+create pseudo element
+*/
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+/*
+grids
+*/
+
+@mixin creategrid($columns, $name: grid) {
+  @for $i from 1 through $columns {
+    .#{$name}-#{$i}-#{$columns} {
+      width: (($i*100)/$columns)*1%;
+    }
+  }
+}
+
+/*
+css triangle
+*/
+
+@mixin css-triangle($color, $direction, $size: 6px, $height: $size, $position: absolute, $round: false) {
+  @include pseudo($pos: $position);
+  width: 0;
+  height: 0;
+  @if $round {
+    border-radius: 3px;
+  }
+  @if $direction==down {
+    border-left: $height solid transparent;
+    border-right: $height solid transparent;
+    border-top: $size solid $color;
+    margin-top: 0 - round( $size / 2.5);
+  }
+  @else if $direction==up {
+    border-left: $height solid transparent;
+    border-right: $height solid transparent;
+    border-bottom: $size solid $color;
+    margin-bottom: 0 - round( $size / 2.5);
+  }
+  @else if $direction==right {
+    border-top: $height solid transparent;
+    border-bottom: $height solid transparent;
+    border-left: $size solid $color;
+    margin-right: -$size;
+  }
+  @else if $direction==left {
+    border-top: $height solid transparent;
+    border-bottom: $height solid transparent;
+    border-right: $size solid $color;
+    margin-left: -$size;
+  }
+}
+
+/*
+css bubble
+*/
+
+@mixin bubble($size, $background) {
+  display: inline-block;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  text-align: center;
+  border-radius: $size/2;
+  background-color: $background;
+  overflow: hidden;
+  img {
+    width: $size;
+    height: $size;
+    object-fit: cover;
+  }
+}
+
+/*
+placeholder
+*/
+
+@mixin input-placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+/*
+truncate
+*/
+
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Contain floats / clearfix
+@mixin cf {
+  &::before {
+    content: " ";
+    display: table;
+  }
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Hide from both screenreaders and browsers
+@mixin hidden {
+  display: none;
+  visibility: hidden;
+}
+
+@mixin visible($state: 'block') {
+  display: unquote($state);
+  visibility: visible;
+}
+
+@mixin antialias {
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* icons */
+
+@mixin icon-img($name, $width, $height: $width) {
+  .ico-#{$name} {
+    background-image: url('../images/pictos/#{$name}.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: $width $height;
+    height: $height;
+    width: $width;
+    vertical-align: middle;
+  }
+}
+
+@mixin scrollstyle {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #eee;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: #eee;
+  }
+}
+
+@mixin  close-button ($size: 50px, $thick: 10px, $color: #fff) {
+	height: $size;
+  width: $size;
+  position: relative;
+	box-sizing: border-box;
+	line-height: $size;
+  display: inline-block;
+  
+	&:before, &:after {
+    $width: $size;
+		$height: $thick;
+		transform: rotate(-45deg);
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -$height/2;
+		margin-left: -$width/2;
+		display: block;
+		height: $height;
+		width: $width;
+		background-color: $color;
+		transition: all .2s ease-out;
+  }
+  
+	&:after {
+		transform: rotate(45deg);
+  }
+  
+	&:hover {
+		&:before, &:after {
+			transform: rotate(0deg);
+		}
+	}
+}

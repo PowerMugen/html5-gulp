@@ -1,0 +1,109 @@
+@import 'base/variables';
+@import 'base/mixins';
+
+
+@import 'mixins';
+
+.basetypo{
+    font-family: $fontfam;
+    font-style: normal;
+}
+
+.text-align-right{
+    text-align: right;
+}
+.text-align-justify{
+    text-align: justify;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-h1{
+    color:$color-dark;
+}
+
+.title-h2{
+    color:$color-dark;
+}
+
+.title-h3{
+    color:$color-dark;
+}
+
+.title-inter{
+    color:$color-dark;
+}
+
+.p{
+    color:$color-dark;
+}
+
+.body {
+    p{
+        @extend .p;
+       
+        &:last-child{
+            padding-bottom: 0;
+        }
+    }
+    ul{
+        padding-bottom: 15px;
+    }
+    ul li{
+        @extend .p;
+        padding-bottom: 10px;
+        position: relative;
+        &::before{
+            content:'-';
+            display: inline-block;
+            padding-right: 4px;
+        }
+        br:last-child{
+            display: none;
+        }
+    }
+    ol{
+        padding-bottom: 15px;
+        padding-left: 20px;
+    }
+    ol li{
+        list-style-type: decimal;
+        @extend .p;
+        padding-bottom: 10px;
+        position: relative;
+    }
+    .text-align-center{
+        text-align: center;
+    }
+    h2{
+        @extend .title-h2;
+    }
+    h3{
+        @extend .title-h3;
+    }
+    h4{
+        @extend .title-h3;
+        @include font-size-root(13);
+    }
+    h5{
+        text-transform:uppercase;
+        font-weight: bold;
+        padding-bottom: 10px;
+    }
+    h6{
+        text-transform:uppercase;
+        font-weight: bold;
+        text-decoration:underline;
+        padding-bottom: 10px;
+    }
+    blockquote{
+        margin-bottom:30px;
+        padding: 10px 50px;
+        max-width: 80%;
+        border-left:4px solid $color-first;
+        p{
+            font-weight:900;
+        }
+        
+    }
+}
