@@ -1,55 +1,61 @@
 @charset "UTF-8";
+
 // Mixins for sass project
 @mixin create-hexa($size, $background) {
-  height: $size;
-  width: $size*0.58;
   background-color: $background;
-  position: relative;
-  margin: 0 $size*0.29;
   display: inline-block;
-  &:before,
-  &:after {
+  height: $size;
+  margin: 0 $size * .29;
+  position: relative;
+  width: $size * .58;
+
+  &::before,
+  &::after {
+    background-color: inherit;
     content: '';
     display: block;
     height: $size;
-    width: $size*0.58;
     position: absolute;
-    background-color: inherit;
     transform-origin: 50% 50%;
+    width: $size * .58;
   }
-  &:before {
+
+  &::before {
     transform: rotate(60deg);
   }
-  &:after {
+
+  &::after {
     transform: rotate(-60deg);
   }
+
   .hexalign {
-    position: absolute;
-    top: 0;
-    left: -$size*0.30;
-    right: -$size*0.30;
     bottom: 0;
     height: 100%;
-    z-index: 1;
+    left: -$size * .30;
+    position: absolute;
+    right: -$size * .30;
     text-align: center;
-    &:before {
+    top: 0;
+    z-index: 1;
+
+    &::before {
       content: '';
       display: inline-block;
       height: 100%;
       vertical-align: middle;
     }
-    &>div {
+
+    >div {
       display: inline-block;
+      max-width: $size * 1.15;
       vertical-align: middle;
-      max-width: $size*1.15;
     }
+
   }
+
 }
 
-/*
-center block
-*/
-
+//center block
 @mixin centered-auto {
   margin: {
     left: auto;
@@ -57,136 +63,112 @@ center block
   }
 }
 
-/* font-size */
-
+// font-size
 @mixin font-size-root($size: 14) {
-  font-size: $size+px;
-  font-size: ($size/10)+rem;
+  font-size: $size + px;
+  font-size: ($size / 10) + rem;
 }
 
-/*
-create pseudo element
-*/
-
+// create pseudo element
 @mixin pseudo($display: block, $pos: absolute, $content: '') {
   content: $content;
   display: $display;
   position: $pos;
 }
 
-/*
-grids
-*/
-
+// grids
 @mixin creategrid($columns, $name: grid) {
   @for $i from 1 through $columns {
     .#{$name}-#{$i}-#{$columns} {
-      width: (($i*100)/$columns)*1%;
+      width: (($i * 100) / $columns) * 1%;
     }
   }
 }
 
-/*
-css triangle
-*/
-
+// css triangle
 @mixin css-triangle($color, $direction, $size: 6px, $height: $size, $position: absolute, $round: false) {
   @include pseudo($pos: $position);
   width: 0;
   height: 0;
   @if $round {
     border-radius: 3px;
-  }
-  @if $direction==down {
+  } @if $direction == down {
     border-left: $height solid transparent;
     border-right: $height solid transparent;
     border-top: $size solid $color;
-    margin-top: 0 - round( $size / 2.5);
-  }
-  @else if $direction==up {
+    margin-top: 0 - round($size / 2.5);
+  } @else if $direction == up {
+    border-bottom: $size solid $color;
     border-left: $height solid transparent;
     border-right: $height solid transparent;
-    border-bottom: $size solid $color;
-    margin-bottom: 0 - round( $size / 2.5);
-  }
-  @else if $direction==right {
-    border-top: $height solid transparent;
+    margin-bottom: 0 - round($size / 2.5);
+  } @else if $direction == right {
     border-bottom: $height solid transparent;
     border-left: $size solid $color;
-    margin-right: -$size;
-  }
-  @else if $direction==left {
     border-top: $height solid transparent;
+    margin-right: -$size;
+  } @else if $direction == left {
     border-bottom: $height solid transparent;
     border-right: $size solid $color;
+    border-top: $height solid transparent;
     margin-left: -$size;
   }
 }
 
-/*
-css bubble
-*/
-
+// css bubble
 @mixin bubble($size, $background) {
   display: inline-block;
   width: $size;
   height: $size;
   line-height: $size;
   text-align: center;
-  border-radius: $size/2;
+  border-radius: $size / 2;
   background-color: $background;
   overflow: hidden;
+
   img {
-    width: $size;
     height: $size;
     object-fit: cover;
+    width: $size;
   }
+
 }
 
-/*
-placeholder
-*/
-
+// placeholder
 @mixin input-placeholder {
+
   &.placeholder {
     @content;
   }
-  &:-moz-placeholder {
+
+  &::placeholder {
     @content;
   }
-  &::-moz-placeholder {
-    @content;
-  }
-  &:-ms-input-placeholder {
-    @content;
-  }
-  &::-webkit-input-placeholder {
-    @content;
-  }
+
 }
 
-/*
-truncate
-*/
-
+// truncate
 @mixin truncate($truncation-boundary) {
   max-width: $truncation-boundary;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 // Contain floats / clearfix
 @mixin cf {
+
   &::before {
-    content: " ";
-    display: table;
-  }
-  &::after {
     content: '';
     display: table;
-    clear: both;
   }
+
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+
 }
 
 // Hide from both screenreaders and browsers
@@ -206,72 +188,87 @@ truncate
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-/* icons */
-
+// icons
 @mixin icon-img($name, $width, $height: $width) {
+
   .ico-#{$name} {
     background-image: url('../images/pictos/#{$name}.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: $width $height;
     height: $height;
-    width: $width;
     vertical-align: middle;
+    width: $width;
   }
+
 }
 
-@mixin scrollstyle {
+$rgba: rgba(0, 0, 0, .1);
+$bgd: #eee;
+
+@mixin scrollstyle($rgba: $rgba, $bgd: $bgd, $width: 8px) {
+
   &::-webkit-scrollbar {
-    width: 8px;
+    width: $width;
   }
-  /* Track */
+
+  // Track
   &::-webkit-scrollbar-track {
-    border-radius: 4px;
+    border-radius: $width / 2;
   }
-  /* Handle */
+
+  // Handle
   &::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background: #eee;
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+    background: $bgd;
+    border-radius: $width / 2;
+    box-shadow: inset 0 0 2px $rgba;
   }
+
   &::-webkit-scrollbar-thumb:window-inactive {
-    background: #eee;
+    background: $bgd;
   }
+
 }
 
-@mixin  close-button ($size: 50px, $thick: 10px, $color: #fff) {
-	height: $size;
+$color: #fff;
+
+@mixin close-button ($size: 50px, $thick: 10px, $color: $color) {
+  height: $size;
   width: $size;
   position: relative;
-	box-sizing: border-box;
-	line-height: $size;
+  box-sizing: border-box;
+  line-height: $size;
   display: inline-block;
-  
-	&:before, &:after {
+
+  &::before,
+  &::after {
     $width: $size;
-		$height: $thick;
-		transform: rotate(-45deg);
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-top: -$height/2;
-		margin-left: -$width/2;
-		display: block;
-		height: $height;
-		width: $width;
-		background-color: $color;
-		transition: all .2s ease-out;
+    $height: $thick;
+    background-color: $color;
+    content: '';
+    display: block;
+    height: $height;
+    left: 50%;
+    margin-left: -($width / 2);
+    margin-top: -($height / 2);
+    position: absolute;
+    top: 50%;
+    transform: rotate(-45deg);
+    transition: all .2s ease-out;
+    width: $width;
   }
-  
-	&:after {
-		transform: rotate(45deg);
+
+  &::after {
+    transform: rotate(45deg);
   }
-  
-	&:hover {
-		&:before, &:after {
-			transform: rotate(0deg);
-		}
-	}
+
+  &:hover {
+
+    &::before,
+    &::after {
+      transform: rotate(0deg);
+    }
+
+  }
+
 }

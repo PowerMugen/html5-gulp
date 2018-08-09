@@ -1,47 +1,41 @@
+// ====================
+// Responsive (Mobiles, tablettes, ...)
+// ======================
 
-/*====================
-/ Responsive (Mobiles, tablettes, ...)
-======================*/
-
-/* Ecrans HDPI
-=================*/
+// Ecrans HDPI
+// =================
 @media (min--moz-device-pixel-ratio: 1.5),
   (-o-min-device-pixel-ratio: 3/2),
   (-webkit-min-device-pixel-ratio: 1.5),
   (min-device-pixel-ratio: 1.5),
   (min-resolution: 144dpi),
   (min-resolution: 1.5dppx) {
-    /* Images @2x */
+    // Images @2x
 }
 
-.touchevents{
-  
+.touchevents {
+  // for touchevents
 }
 
 @media only screen and (min-width: $desk + 1) {
-
 }
 
-/* Environnement small screen
-==================================================*/
+// Environnement small screen
+// ==================================================
 @media only screen and (max-width: $desk) {
- 
 }
 
-/* Environnement mobile : Tablettes & Téléphones
-==================================================*/
+// Environnement mobile : Tablettes & Téléphones
+// ==================================================
 @media only screen and (max-width: $desk - 1) {
- 
 }
 
-/* Phablet (Gros téléphone mobile)
-==================================================*/
+// Phablet (Gros téléphone mobile)
+// ==================================================
 @media only screen and (max-width: $phab) {
-  
 }
 
-/* Téléphones
-==================================================*/
-@media only screen and (max-width: $palm){
-
+// Téléphones
+// ==================================================
+@media only screen and (max-width: $palm) {
 }

@@ -1,198 +1,328 @@
-/*====================
-/Responsive (Mobiles, tablettes, ...)
-======================*/
+// ====================
+// Responsive (Mobiles, tablettes, ...)
+// ======================
 
-/* Ecrans HDPI
-=================*/
+// Ecrans HDPI
+// =================
 @media (min--moz-device-pixel-ratio: 1.5),
   (-o-min-device-pixel-ratio: 3/2),
   (-webkit-min-device-pixel-ratio: 1.5),
   (min-device-pixel-ratio: 1.5),
   (min-resolution: 144dpi),
   (min-resolution: 1.5dppx) {
-    /* Images @2x */
+    // Images @2x
 }
 
 @media only screen and (min-width: $desk+1) {
-  .desk-hide {display: none;}
+  .desk-hide {
+    display: none;
+  }
 }
 
-/* Environnement mobile : Tablettes & Téléphones
-==================================================*/
+// Environnement mobile : Tablettes & Téléphones
+// ==================================================
 @media only screen and (max-width: $desk) {
-  /* Masquer certains éléments sur environnement mobile */
-  .mob-hide {display: none!important;}
-  .mob-show {display: block!important;}
-  .mob-show-inline {display: inline-block!important;}
+  // Masquer certains éléments sur environnement mobile
+  .mob-hide {
+    display: none !important;
+  }
 
-  /* Responsive media object */
-  .media-mob > .media-item, .media-mob > .media-item-rev {float: none; display: block; margin-left:auto; margin-right:auto; margin-bottom:10px;}
-  .media-mob.media-small > .media-item, .media-mob.media-small > .media-item-rev {margin-bottom:$gridmargin/2;}
-  .media-mob.media-large > .media-item, .media-mob.media-large > .media-item-rev {margin-bottom:$gridmargin*2;}
+  .mob-show {
+    display: block !important;
+  }
 
-  /**
-   * On défini les tailles de grilles sur environnement mobile
-   */
+  .mob-show-inline {
+    display: inline-block !important;
+  }
 
-  /* Entier */
-  .mob-full {width: 100%;}
+  // Responsive media object
+  .media-mob > .media-item,
+  .media-mob > .media-item-rev {
+    @include centered-auto;
+    display: block;
+    float: none;
+    margin-bottom: 10px;
+  }
 
-  /* Moitiés */
-  .mob-half{width:50%;}
+  .media-mob.media-small > .media-item,
+  .media-mob.media-small > .media-item-rev {
+    margin-bottom: $gridmargin / 2;
+  }
 
-  /* on utilise le mixin de grid pour les tailles spécifiques au mobile
-  ici grilles 4 et 8 colonnes */
-  .grids{
+  .media-mob.media-large > .media-item,
+  .media-mob.media-large > .media-item-rev {
+    margin-bottom: $gridmargin * 2;
+  }
+
+  // On défini les tailles de grilles sur environnement mobile
+  // Entier
+  .mob-full {
+    width: 100%;
+  }
+
+  // Moitiés
+  .mob-half {
+    width: 50%;
+  }
+
+  // on utilise le mixin de grid pour les tailles spécifiques au mobile
+  // ici grilles 4 et 8 colonnes
+  .grids {
     @include creategrid(4, $name : mob);
     @include creategrid(8, $name : mob);
   }
 
 }
 
-/* Phablet (Gros téléphone mobile)
-==================================================*/
+// Phablet (Gros téléphone mobile)
+//==================================================
 @media only screen and (max-width: $phab) {
-  /* Masquer certains éléments sur environnement mobile */
-  .phab-hide {display: none!important;}
-  .phab-show {display: block!important;}
-  .phab-show-inline {display: inline-block!important;}
+  // Masquer certains éléments sur environnement mobile
+  .phab-hide {
+    display: none !important;
+  }
 
-  /* Responsive media object */
-  .media-phab > .media-item, .media-phab > .media-item-rev {float: none; display: block; margin-left:auto; margin-right:auto; margin-bottom:10px;}
-  .media-phab.media-small > .media-item, .media-phab.media-small > .media-item-rev {margin-bottom:$gridmargin/2;}
-  .media-phab.media-large > .media-item, .media-phab.media-large > .media-item-rev {margin-bottom:$gridmargin*2;}
+  .phab-show {
+    display: block !important;
+  }
 
-  /**
-   * On défini les tailles de grilles sur environnement mobile
-   */
+  .phab-show-inline {
+    display: inline-block !important;
+  }
 
-  /* Entier */
+  // Responsive media object
+  .media-phab > .media-item,
+  .media-phab > .media-item-rev {
+    @include centered-auto;
+    display: block;
+    float: none;
+    margin-bottom: 10px;
+  }
+
+  .media-phab.media-small > .media-item,
+  .media-phab.media-small > .media-item-rev {
+    margin-bottom: $gridmargin / 2;
+  }
+
+  .media-phab.media-large > .media-item,
+  .media-phab.media-large > .media-item-rev {
+    margin-bottom: $gridmargin * 2;
+  }
+
+  // On défini les tailles de grilles sur environnement mobile
+
+  // Entier
   .grids .phab-full,
-  .phab-full {width: 100%;}
+  .phab-full {
+    width: 100%;
+  }
 
-  /* Moitiés */
+  // Moitiés
   .grids .phab-half,
-  .phab-half {width:50%;}
+  .phab-half {
+    width: 50%;
+  }
 
-   /* on utilise le mixin de grid pour les tailles spécifiques aux phablettes
-  ici grilles 4 et 8 colonnes */
-  .grids{
+  // on utilise le mixin de grid pour les tailles spécifiques aux phablettes
+  // ici grilles 4 et 8 colonnes
+  .grids {
     @include creategrid(4, $name : phab);
     @include creategrid(8, $name : phab);
   }
 
 }
 
-/* Téléphones
-==================================================*/
+// Téléphones
+// ==================================================
 @media only screen and (max-width: $palm) {
-  /* Masquer certains éléments sur environnement mobile */
-  .palm-hide {display: none!important;}
-  .palm-show {display: block!important;}
-  .palm-show-inline {display: inline-block!important;}
+  // Masquer certains éléments sur environnement mobile
+  .palm-hide {
+    display: none !important;
+  }
 
-  /* Responsive media object */
-  .media-palm > .media-item, .media-palm > .media-item-rev {float: none; display: block; margin-left:auto; margin-right:auto; margin-bottom:10px;}
-  .media-palm.media-small > .media-item, .media-palm.media-small > .media-item-rev {margin-bottom:$gridmargin/2;}
-  .media-palm.media-large > .media-item, .media-palm.media-large > .media-item-rev {margin-bottom:$gridmargin*2;}
+  .palm-show {
+    display: block !important;
+  }
 
-  /* Grids
-  =========*/
-  .grids {}
-    [class^="grid-"] {}
+  .palm-show-inline {
+    display: inline-block !important;
+  }
 
-  .palm-row {display: table; width: 100%; table-layout:fixed;}
-    .palm-row > .mob-cell {display: table-cell; vertical-align: top;}
+  // Responsive media object
+  .media-palm > .media-item,
+  .media-palm > .media-item-rev {
+    @include centered-auto;
+    display: block;
+    float: none;
+    margin-bottom: 10px;
+  }
 
-  .palm-unrow {display: block;}
-    .palm-unrow > .cell {display: inline-block;}
+  .media-palm.media-small > .media-item,
+  .media-palm.media-small > .media-item-rev {
+    margin-bottom: $gridmargin / 2;
+  }
 
-  /**
-   * On défini les tailles de grilles sur environnement mobile
-   */
+  .media-palm.media-large > .media-item,
+  .media-palm.media-large > .media-item-rev {
+    margin-bottom: $gridmargin * 2;
+  }
 
-  /* Entier */
+  // Grids
+  // =========
+  .grids {
+    // content
+  }
+
+  [class^="grid-"] {
+    // content
+  }
+
+  .palm-row {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    > .mob-cell {
+      display: table-cell;
+      vertical-align: top;
+    }
+
+  }
+
+  .palm-unrow {
+    display: block;
+
+    > .cell {
+      display: inline-block;
+    }
+
+  }
+
+  // On défini les tailles de grilles sur environnement mobile
+
+  // Entier
   .grids .palm-full,
-  .palm-full {width: 100%;}
+  .palm-full {
+    width: 100%;
+  }
 
-  /* Moitiés */
+  // Moitiés
   .grids .palm-half,
-  .palm-half {width:50%;}
+  .palm-half {
+    width: 50%;
+  }
 
-   /* on utilise le mixin de grid pour les tailles spécifiques aux phablettes
-  ici grilles 4 et 8 colonnes */
-  .grids{
+  // on utilise le mixin de grid pour les tailles spécifiques aux phablettes
+  // ici grilles 4 et 8 colonnes
+  .grids {
     @include creategrid(2, $name : palm);
     @include creategrid(4, $name : palm);
     @include creategrid(8, $name : palm);
   }
 
+  // Tableaux responsive
+  //=======================
 
-  /* Tableaux responsive
-  ========================*/
-  /**
-   * Pour afficher des données lisibles sur petits écrans, on change le sens de lecture
-   * Les en-tête sont affichées devant chaque élément de colonne
+  // Pour afficher des données lisibles sur petits écrans, on change le sens de lecture
+  // Les en-tête sont affichées devant chaque élément de colonne
 
-    En-tête 1 | En-tête 2 | En-tête 3
-    ----------------------------------
-    Col 1     | Col 2     | Col 3
-    Col 4     | Col 5     | Col 6
+  //  En-tête 1 | En-tête 2 | En-tête 3
+  //  ----------------------------------
+  //  Col 1     | Col 2     | Col 3
+  //  Col 4     | Col 5     | Col 6
 
-   * Devient
+  // Devient
 
-     En-tête 1 | Col 1
-     En-tête 2 | Col 2
-     En-tête 3 | Col 3
-     ------------------
-     En-tête 1 | Col 4
-     En-tête 2 | Col 5
-     En-tête 3 | Col 6
-     ------------------
+  //   En-tête 1 | Col 1
+  //   En-tête 2 | Col 2
+  //   En-tête 3 | Col 3
+  //   ------------------
+  //   En-tête 1 | Col 4
+  //   En-tête 2 | Col 5
+  //   En-tête 3 | Col 6
+  //   ------------------
 
-   * Pour simuler ces en-tête, un data-attr `data-label` doit être appliqué à la main sur les cellules
-   * Ce data-attr doit reprendre l'intitulé de l'en-tête correspondant
-   <table class="table-responsive">
-       <caption>Liste des employés</caption>
-       <thead>
-           <tr>
-               <th>Nom</th>
-               <th>Prénom</th>
-           </tr>
-       </thead>
-       <tbody>
-           <tr>
-               <td data-label="Nom">Employé 1</td>
-               <td data-label="Prénom">Employé 2</td>
-           </tr>
-       </tbody>
-   </table>
-   */
-  .table-responsive, .table-responsive thead, .table-responsive tbody, .table-responsive th, .table-responsive td, .table-responsive tr {display: block;}
-    .table-responsive thead {border-bottom:1px solid;}
-      /* Les entêtes sont masqués */
-      .table-responsive thead th {position: absolute; top:-9999em; left:-9999em;}
-      /**
-       * On ne garde que le premier en-tête qui devient le titre du tableau 
-       * Le mieux étant d'avoir une `<caption></caption>`
-       */
-      .table-responsive thead th:first-child {position:static;}
-    /* Séparation entre chaque "entrée" du tableau */
-    .table-responsive tbody tr {border-bottom:1px solid;}
-      /* On créé un espace vide pour laisser la place à l'en-tête généré via data-* */
-      .table-responsive td {padding-left:50%; position: relative;}
-      /* Si une ligne n'a pas besoin de label */
-      .table-responsive .tr-heading {padding-left:10px; text-align: center;}
-      /* L'en-tête que nous avons masqué est récupéré via un data-attr */
-      .table-responsive tbody td:before {content:" "attr(data-label)" "; position: absolute; top: 0; left: 0; width: 45%; padding-right: 10px; white-space: nowrap; text-align: right;}
+  // Pour simuler ces en-tête, un data-attr `data-label` doit être appliqué à la main sur les cellules
+  // Ce data-attr doit reprendre l'intitulé de l'en-tête correspondant
+  // <table class="table-responsive">
+  //     <caption>Liste des employés</caption>
+  //     <thead>
+  //         <tr>
+  //             <th>Nom</th>
+  //             <th>Prénom</th>
+  //         </tr>
+  //     </thead>
+  //     <tbody>
+  //         <tr>
+  //             <td data-label="Nom">Employé 1</td>
+  //             <td data-label="Prénom">Employé 2</td>
+  //         </tr>
+  //     </tbody>
+  // </table>
 
-  /**
-   * Corriger bug sur IOS 5.1.1 lié à Modernizr et un élément affiché hors de l'écran
-   * Tous les éléments avec des coordonnées les positionnant en dehors de l'écran doivent être ajoutés ici
-   */
+  .table-responsive,
+  .table-responsive thead,
+  .table-responsive tbody,
+  .table-responsive th,
+  .table-responsive td,
+  .table-responsive tr {
+    display: block;
+  }
+
+  .table-responsive thead {
+    border-bottom: 1px solid;
+  }
+
+  // Les entêtes sont masqués
+  .table-responsive thead th {
+    left: -9999em;
+    position: absolute;
+    top: -9999em;
+  }
+
+  // On ne garde que le premier en-tête qui devient le titre du tableau 
+  // Le mieux étant d'avoir une `<caption></caption>`
+
+  .table-responsive thead th:first-child {
+    position: static;
+  }
+
+  // Séparation entre chaque "entrée" du tableau
+  .table-responsive tbody tr {
+    border-bottom: 1px solid;
+  }
+
+  // On créé un espace vide pour laisser la place à l'en-tête généré via data-* 
+  .table-responsive td {
+    padding-left: 50%;
+    position: relative;
+  }
+  // Si une ligne n'a pas besoin de label
+  .table-responsive .tr-heading {
+    padding-left: 10px;
+    text-align: center;
+  }
+
+  // L'en-tête que nous avons masqué est récupéré via un data-attr
+  .table-responsive tbody td::before {
+    content: ' 'attr(data-label)' ';
+    left: 0;
+    padding-right: 10px;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    white-space: nowrap;
+    width: 45%;
+  }
+
+      // Corriger bug sur IOS 5.1.1 lié à Modernizr et un élément affiché hors de l'écran
+  // Tous les éléments avec des coordonnées les positionnant en dehors de l'écran doivent être ajoutés ici
+
   .i-txt,
   .nav-children .children,
   .hidden,
-  .table-responsive thead th {-webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); -ms-transform: translate3d(0, 0, 0); -o-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0);}
+  .table-responsive thead th {
+    transform: translate3d(0, 0, 0);
+  }
 
 }

@@ -1,12 +1,12 @@
-/* page wrapper
-================ */
+// page wrapper
+// ================
 .wrapper {
-    max-width: $page;
-    @include centered-auto;
-  }
+  @include centered-auto;
+  max-width: $page;
+}
   
-  /* Balises
-  =====================*/
+  // Balises
+  // =====================
   html {min-height:100%; line-height:1.333; font-size: 62.5%;}
   body {
     @include font-size-root($fontsize);
@@ -17,8 +17,8 @@
   a[href^="tel"] {color:inherit;}
   label {cursor: pointer;}
   
-  /* Buttons
-  =====================*/
+  // Buttons
+  // =====================
   [class*="-btn"],
   [class*="btn-"] {display:inline-block; vertical-align: middle; margin:0; border:none; font-size:15px; line-height:normal; text-align: center; cursor:pointer; -webkit-appearance: none;
     &:hover {
@@ -26,63 +26,41 @@
     }
   }
   
-  /*=====================================*/
+  // =====================================
   
-  /* Icons
-  ================ */
+  // Icons
+  // ================
   [class^="ico-"]{
     font-size:0;
     display: inline-block;
     position: relative;
     &::before{ 
-  
       @include font-size-root($fontsize);
     }
   }
   .ico-txt {text-indent: -9999em; text-align:left; overflow: hidden;}
   
-  /*=====================================*/
+  // =====================================
   
-  /* Grid
-  ================ */
-  /**
-   * Fluid Grid system, with percent %
-   * Parent `grids` only contain `grid-*` as child
-   * Unit "grid" must begin with class `grid-*`
-   * Example :
-   * OK
-   <div class="grids">
-    <div class="grid-1-2"></div>
-   </div>
-   **********
-   * Not OK
-   <div class="grids">
-    <h2>Titre</h2>
-    <div class="grid-1-2"></div>
-   </div>
-   **********
-   * Not OK
-   <div class="grids">
-    <div class="box-border grid-1-2"></div>
-   </div>
-   * Keep structure with indent `.grids>.grid-*`
-   <div class="grids">
-    <div class="grid-1-2">
-      <div class="grids">
-        <div class="grid-1-3"></div>
-        <div class="grid-1-3"></div>
-        <div class="grid-1-3"></div>
-      </div>
-    </div>
-    <div class="grid-1-2"></div>
-   </div>
-   */
+  // Grid
+  // ================
+  // 
+  // Fluid Grid system, with percent %
+  // Parent `grids` only contain `grid-*` as child
+  // Unit "grid" must begin with class `grid-*`
+  // Example :
+  // OK
+  // <div class="grids">
+  //  <div class="grid-1-2"></div>
+  // </div>
+
   .grids {margin-left:-$gridmargin; letter-spacing:-0.31em;
     font-size:0;
-    /* Corriger le problème avec les polices non web-safe */
+    // Corriger le problème avec les polices non web-safe
     font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;}
-  .opera:-o-prefocus, .grids {word-spacing: -0.43em; /* Fix for Opera */}
-    /* La classe doit absolument commencer par .grid- */
+   // Fix for Opera
+  .opera:-o-prefocus, .grids {word-spacing: -0.43em; }
+    // La classe doit absolument commencer par .grid-
     [class^="grid-"] {
       padding-left:$gridmargin; 
       width:100%; 

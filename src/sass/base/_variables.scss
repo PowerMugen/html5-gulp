@@ -14,14 +14,18 @@ $color-first: #d00918;
 $color-second: #f39200;
 $color-third: #000;
 
-$color-dark : #121318;
+$color-dark: #121318;
 $color-darkgrey: #666;
 $color-lightgrey: #dadada;
 $color-body: #f0f1f3;
 
 $transitionbtn: color .5s ease-in-out, background-color .5s ease-in-out;
 
-$icomoon-font-family: "kprod" !default;
-$icomoon-font-path: "fonts" !default;
+$icomoon-font-family: 'kprod' !default;
+$icomoon-font-path: 'fonts' !default;
 
-
+$ico-smallarrow: '\e901';
+$ico-search: '\e900';
+$ico-facebook: '\e902';
+$ico-instagram: '\e903';
+$ico-twitter: '\e908';
